@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunyard.ims.dao.BsImageMapper">
+  <resultMap id="BaseResultMap" type="com.sunyard.ims.model.BsImage">
+    <id column="IMAGE_ID" jdbcType="VARCHAR" property="imageId" />
+    <result column="IMAGE_NAME" jdbcType="VARCHAR" property="imageName" />
+    <result column="IMAGE_NUM" jdbcType="DECIMAL" property="imageNum" />
+    <result column="PIC_PATH" jdbcType="VARCHAR" property="picPath" />
+    <result column="S_PIC_PATH" jdbcType="VARCHAR" property="sPicPath" />
+    <result column="IMAGE_SIZE" jdbcType="FLOAT" property="imageSize" />
+    <result column="IMAGE_TYPE" jdbcType="VARCHAR" property="imageType" />
+    <result column="IMAGE_TIME" jdbcType="DATE" property="imageTime" />
+    <result column="RECORD_TIME" jdbcType="DATE" property="recordTime" />
+    <result column="SIMILAR_STATUS" jdbcType="CHAR" property="similarStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    IMAGE_ID, IMAGE_NAME, IMAGE_NUM, PIC_PATH, S_PIC_PATH, IMAGE_SIZE, IMAGE_TYPE, IMAGE_TIME, 
+    RECORD_TIME, SIMILAR_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BS_IMAGE
+    where IMAGE_ID = #{imageId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from BS_IMAGE
+    where IMAGE_ID = #{imageId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sunyard.ims.model.BsImage">
+    insert into BS_IMAGE (IMAGE_ID, IMAGE_NAME, IMAGE_NUM, 
+      PIC_PATH, S_PIC_PATH, IMAGE_SIZE, 
+      IMAGE_TYPE, IMAGE_TIME, RECORD_TIME, 
+      SIMILAR_STATUS)
+    values (#{imageId,jdbcType=VARCHAR}, #{imageName,jdbcType=VARCHAR}, #{imageNum,jdbcType=DECIMAL}, 
+      #{picPath,jdbcType=VARCHAR}, #{sPicPath,jdbcType=VARCHAR}, #{imageSize,jdbcType=FLOAT}, 
+      #{imageType,jdbcType=VARCHAR}, #{imageTime,jdbcType=DATE}, #{recordTime,jdbcType=DATE}, 
+      #{similarStatus,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sunyard.ims.model.BsImage">
+    insert into BS_IMAGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imageId != null">
+        IMAGE_ID,
+      </if>
+      <if test="imageName != null">
+        IMAGE_NAME,
+      </if>
+      <if test="imageNum != null">
+        IMAGE_NUM,
+      </if>
+      <if test="picPath != null">
+        PIC_PATH,
+      </if>
+      <if test="sPicPath != null">
+        S_PIC_PATH,
+      </if>
+      <if test="imageSize != null">
+        IMAGE_SIZE,
+      </if>
+      <if test="imageType != null">
+        IMAGE_TYPE,
+      </if>
+      <if test="imageTime != null">
+        IMAGE_TIME,
+      </if>
+      <if test="recordTime != null">
+        RECORD_TIME,
+      </if>
+      <if test="similarStatus != null">
+        SIMILAR_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imageId != null">
+        #{imageId,jdbcType=VARCHAR},
+      </if>
+      <if test="imageName != null">
+        #{imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageNum != null">
+        #{imageNum,jdbcType=DECIMAL},
+      </if>
+      <if test="picPath != null">
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="sPicPath != null">
+        #{sPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="imageSize != null">
+        #{imageSize,jdbcType=FLOAT},
+      </if>
+      <if test="imageType != null">
+        #{imageType,jdbcType=VARCHAR},
+      </if>
+      <if test="imageTime != null">
+        #{imageTime,jdbcType=DATE},
+      </if>
+      <if test="recordTime != null">
+        #{recordTime,jdbcType=DATE},
+      </if>
+      <if test="similarStatus != null">
+        #{similarStatus,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sunyard.ims.model.BsImage">
+    update BS_IMAGE
+    <set>
+      <if test="imageName != null">
+        IMAGE_NAME = #{imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageNum != null">
+        IMAGE_NUM = #{imageNum,jdbcType=DECIMAL},
+      </if>
+      <if test="picPath != null">
+        PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="sPicPath != null">
+        S_PIC_PATH = #{sPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="imageSize != null">
+        IMAGE_SIZE = #{imageSize,jdbcType=FLOAT},
+      </if>
+      <if test="imageType != null">
+        IMAGE_TYPE = #{imageType,jdbcType=VARCHAR},
+      </if>
+      <if test="imageTime != null">
+        IMAGE_TIME = #{imageTime,jdbcType=DATE},
+      </if>
+      <if test="recordTime != null">
+        RECORD_TIME = #{recordTime,jdbcType=DATE},
+      </if>
+      <if test="similarStatus != null">
+        SIMILAR_STATUS = #{similarStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where IMAGE_ID = #{imageId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sunyard.ims.model.BsImage">
+    update BS_IMAGE
+    set IMAGE_NAME = #{imageName,jdbcType=VARCHAR},
+      IMAGE_NUM = #{imageNum,jdbcType=DECIMAL},
+      PIC_PATH = #{picPath,jdbcType=VARCHAR},
+      S_PIC_PATH = #{sPicPath,jdbcType=VARCHAR},
+      IMAGE_SIZE = #{imageSize,jdbcType=FLOAT},
+      IMAGE_TYPE = #{imageType,jdbcType=VARCHAR},
+      IMAGE_TIME = #{imageTime,jdbcType=DATE},
+      RECORD_TIME = #{recordTime,jdbcType=DATE},
+      SIMILAR_STATUS = #{similarStatus,jdbcType=CHAR}
+    where IMAGE_ID = #{imageId,jdbcType=VARCHAR}
+  </update>
+</mapper>
